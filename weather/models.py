@@ -10,4 +10,4 @@ class Values(models.Model):
     sensor = models.ForeignKey(Sensor)
     temp = models.FloatField()
     hum = models.FloatField()
-    date = models.FloatField()
+    date = models.DateTimeField(auto_now=True)

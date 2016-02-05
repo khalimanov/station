@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Sensor, Values
 import time
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt # Чтобы работал тест запросов
 
 
@@ -27,6 +28,6 @@ def addvalue(request):
     new_value.sensor = sensor
     new_value.temp = temp
     new_value.hum = hum
-    new_value.date = round(time.time() - time.timezone)
+    new_value.date = timezone.now()
     new_value.save()
-    return HttpResponse('200 OK')
+    return HttpResponse('200 ok ' + str(new_value.date))

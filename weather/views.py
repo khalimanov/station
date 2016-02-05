@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Sensor, Values
+import time
 from django.views.decorators.csrf import csrf_exempt # Чтобы работал тест запросов
 
 
@@ -26,5 +27,6 @@ def addvalue(request):
     new_value.sensor = sensor
     new_value.temp = temp
     new_value.hum = hum
+    new_value.date = round(time.time() - time.timezone)
     new_value.save()
     return HttpResponse('200 OK')

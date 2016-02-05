@@ -1,0 +1,17 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+__init__.py
+__pycache__
+.Python
+env/*
+/env
+db.sqlite3
+
+
+# Django stuff:
+*.log
+*.pot
+/conf
+conf/*

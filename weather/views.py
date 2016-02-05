@@ -14,6 +14,12 @@ def index(request):
     return render(request, 'weather/index.html', context)
 
 
+def results(request):
+    values_list = Values.objects.all()
+    context = {'values_list':values_list}
+    return render(request, 'weather/results.html',context)
+
+
 @csrf_exempt
 def addvalue(request):
     if request.method != 'POST':

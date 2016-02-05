@@ -1,0 +1,31 @@
+{% if sensor_list %}
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Датчики</title>
+            <style>
+                .brd {
+                    border: 1px solid black; /* Параметры границы */
+                    border-collapse: collapse;
+                }
+            </style>
+        </head> 
+        <body>
+            <p> Доступные датчики </p>
+            <table class="brd" border = "1">
+                <tr>
+                    <th>Код</th>
+                    <th>Наименование</th>
+                </tr>
+                {% for sensor in sensor_list %}
+                    <tr>
+                        <td align="right">{{ sensor.sensor_id_const }}</td>
+                        <td>{{ sensor.sensor_name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </body>
+    </html>
+{% else %}
+    <p> No sensors in database </p>
+{% endif %}

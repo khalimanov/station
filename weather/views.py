@@ -27,8 +27,9 @@ def addvalue(request):
     sensor_id = request.POST.get("sensor_id", 0)
     temp = request.POST.get('temp', 0)
     hum = request.POST.get('hum', 0)
+    params = str(sensor_id) + " " + str(temp) + " " + str(hum)
     if sensor_id == 0 or hum == 0:
-        return HttpResponse('Bad info')
+        return HttpResponse('Bad info: ' + params)
     sensor = Sensor.objects.get(sensor_id_const=sensor_id)
     new_value = Values()
     new_value.sensor = sensor

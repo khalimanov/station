@@ -7,6 +7,9 @@ class Sensor(models.Model):
 
 
 class Values(models.Model):
+    class Meta:
+        ordering = ['id']
+
     sensor = models.ForeignKey(Sensor)
     temp = models.FloatField()
     hum = models.FloatField()

@@ -15,7 +15,7 @@ def index(request):
 
 
 def results(request):
-    values_list = Values.objects.all()
+    values_list = Values.objects.reverse()[:20:-1]
     context = {'values_list':values_list}
     return render(request, 'weather/results.html',context)
 

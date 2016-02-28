@@ -123,6 +123,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+
 try:
     from station.local_settings import *
 except ImportError:

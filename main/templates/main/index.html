@@ -27,7 +27,7 @@
                 data.addColumn('number', 'Humidity');
                 data.addRows([
                     {% for value in values_list %}
-                        [new Date(Date.parse("{{ value.date }}")), {{ value.temp }}, {{ value.hum }}],
+                        [new Date(Date.parse("{{ value.date|date:'Y-m-d H:i' }}")), {{ value.temp }}, {{ value.hum }}],
                     {% endfor %}
                 ]);
 
@@ -58,8 +58,8 @@
                 }
                 drawMaterialChart();
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+            // var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            // chart.draw(data, options);
             };
 
         </script>

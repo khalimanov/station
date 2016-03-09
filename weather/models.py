@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 
@@ -14,3 +15,11 @@ class Values(models.Model):
     temp = models.FloatField()
     hum = models.FloatField()
     date = models.DateTimeField(auto_now=True)
+
+    def as_dict(self):
+        return {
+            "temp": self.temp,
+            "hum": self.hum,
+            "date": self.date,
+            # other stuff
+        }

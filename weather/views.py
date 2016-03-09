@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Sensor, Values
-import time
+import datetime
 from django.utils import timezone
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt # Чтобы работал тест запросов
 
 
@@ -18,6 +19,20 @@ def results(request):
     values_list = Values.objects.reverse()[:20:-1]
     context = {'values_list': values_list}
     return render(request, 'weather/results.html', context)
+
+
+def month_results(request, sensor_id):
+    date_month = datetime.datetime.now() - datetime.timedelta(days=30)
+    values_list = Values.objects.filter(date__gte=date_month).filter(sensor=Sensor.objects.filter(sensor_id_const=sensor_id))
+    context = {'values_list': values_list}
+    return render(request, 'weather/results.html', context)
+
+
+def month_results_json(request, sensor_id):
+    date_month = datetime.datetime.now() - datetime.timedelta(days=30)
+    values_list = Values.objects.filter(date__gte=date_month).filter(sensor=Sensor.objects.filter(sensor_id_const=sensor_id))
+    dictionaries = [obj.as_dict() for obj in values_list]
+    return JsonResponse(dictionaries, safe=False)
 
 
 @csrf_exempt

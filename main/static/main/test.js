@@ -13,7 +13,7 @@ $(function () {
  //            });
  //        } 
  //    });
-    $.getJSON('http://127.0.0.1:8000/weather/results_month_json/1/', function (data) {
+    $.getJSON('/weather/results_month_json/1/', function (data) {
         data.forEach(function(item, i, arr) {
                 x.push(new Date(Date.parse(item.date)));
                 hum.push(item.hum);
@@ -32,6 +32,7 @@ $(function () {
             xAxis: [{
                 type: 'datetime',
                 dateTimeLabelFormats: { // don't display the dummy year
+                    day: '%A, %b %e',
                     month: '%e. %b',
                     year: '%b'
                 },
@@ -61,7 +62,7 @@ $(function () {
                     }
                 },
                 labels: {
-                    format: '{value} mm',
+                    format: '{value} %',
                     style: {
                         color: Highcharts.getOptions().colors[0]
                     }

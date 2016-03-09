@@ -15,13 +15,14 @@ $(function () {
  //    });
     $.getJSON('/weather/results_month_json/1/', function (data) {
         data.forEach(function(item, i, arr) {
+                var date = new Date(Date.parse(item.date));
                 x.push(new Date(Date.parse(item.date)));
-                hum.push(item.hum);
-                temp.push(item.temp);
+                hum.push([date, item.hum]);
+                temp.push([date, item.temp]);
         });
         $('#container').highcharts({
             chart: {
-                zoomType: 'xy'
+                zoomType: 'x'
             },
             title: {
                 text: 'Температура и влажность'
@@ -32,13 +33,13 @@ $(function () {
             xAxis: [{
                 type: 'datetime',
                 dateTimeLabelFormats: { // don't display the dummy year
+                    minute: '%H:%M',
+                    hour: '%A',
                     day: '%A, %b %e',
                     month: '%e. %b',
                     year: '%b'
                 },
-                //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                //    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                categories: x,
+                //categories: x,
                 crosshair: true
             }],
             yAxis: [{ // Primary yAxis

@@ -5,11 +5,15 @@ $(function () {
 
     $.getJSON('/weather/results_day_json/1/', function (data) {
         data.forEach(function(item, i, arr) {
-                var date = new Date(Date.parse(item.date));
-                x.push(new Date(Date.parse(item.date)));
+                var date = Date.parse(item.date);
+                // var dateStr = "Date.UTC(" + item.date.substring(0,4)+","+item.date.substring(5,7)+","+item.date.substring(8,10)+","+item.date.substring(11,13)+","+item.date.substring(14,16)+")";
+                // dateStr = "Date.UTC(" + item.date.substring(0,4)+","+item.date.substring(5,7)+","+item.date.substring(8,10)+")";
+                // dateStr = item.date.substring(0,4)+","+item.date.substring(5,7)+","+item.date.substring(8,10);
+                // x.push(new Date(Date.parse(item.date)));
                 hum.push([date, item.hum]);
                 temp.push([date, item.temp]);
         });
+        // alert(hum);
         $('#container').highcharts({
             chart: {
                 zoomType: 'x'
@@ -22,10 +26,11 @@ $(function () {
             },
             xAxis: [{
                 type: 'datetime',
+                // format: '{value: %d %b %H:%M} NNN',
                 dateTimeLabelFormats: { // don't display the dummy year
-                    minute: '%H:%M',
-                    hour: '%H',
-                    day: '%A, %b %e',
+                     minute: '%H:%M',
+                     hour: '%H',
+                     day: '%A, %b %e',
                     month: '%e. %b',
                     year: '%b'
                 },

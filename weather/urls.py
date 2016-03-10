@@ -18,6 +18,10 @@ urlpatterns = [
     # ex: /weather/results_month_json/ значения температуры не работает
     url(r'^results_month_json/(?P<sensor_id>[0-9]+)/$', views.month_results_json, name='month_results_json'),
 
+    # ex: /weather/results_month_json/ значения температуры не работает
+    url(r'^results_day_json/(?P<sensor_id>[0-9]+)/$', views.day_results_json, name='day_results_json'),
+
+
     # ex: /weather/addvalue/ добавление значения
     url(r'^addvalue/$', views.addvalue, name='addvalue'),
 ]

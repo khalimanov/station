@@ -34,6 +34,12 @@ def month_results_json(request, sensor_id):
     dictionaries = [obj.as_dict() for obj in values_list]
     return JsonResponse(dictionaries, safe=False)
 
+def day_results_json(request, sensor_id):
+    date_month = datetime.datetime.now() - datetime.timedelta(days=1)
+    values_list = Values.objects.filter(date__gte=date_month).filter(sensor=Sensor.objects.filter(sensor_id_const=sensor_id))
+    dictionaries = [obj.as_dict() for obj in values_list]
+    return JsonResponse(dictionaries, safe=False)
+
 
 @csrf_exempt
 def addvalue(request):
